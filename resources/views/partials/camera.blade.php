@@ -1,25 +1,13 @@
-<div class="p-2 max-w-xl max-h-max">
-    <div class="flex items-center justify-between">
-        <h1>Live Cam depan</h1>
-        <button class="py-2 flex justify-center">
-            <label class="inline-flex items-center cursor-pointer">
-                <input id="cameraToggle" type="checkbox" value="" class="sr-only peer">
-                <div
-                    class="relative w-12 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
-                </div>
-            </label>
-        </button>
-    </div>
-    <video id="webcam1" class="w-full h-auto border-2 border-[#800F2F]" autoplay playsinline></video>
+<div class="relative ">
+    <video id="webcam1" class="shadow-lg mirror w-full 2xl:h-[800px] object-cover object-center border-2 border" autoplay playsinline></video>
+    <div id="cameraText" class="absolute shadow-lg inset-0 flex justify-center items-center text-white font-bold text-2xl bg-black bg-opacity-50">Camera OFF</div>
 </div>
-
 <style>
-    #webcam1 {
-        transform: scaleX(-1);
-        /* Membalik tampilan secara horizontal */
+    /* Class untuk efek cermin */
+    .mirror {
+        transform: scaleX(-1); /* Membalik tampilan secara horizontal */
     }
 </style>
-
 <script>
     let stream1 = null;
 
@@ -42,6 +30,8 @@
                 }
             });
             document.getElementById('webcam1').srcObject = stream1;
+            // Tampilkan teks saat kamera aktif
+            document.getElementById('cameraText').style.display = 'none'; // Sembunyikan teks "Off Camera"
 
         } catch (err) {
             console.error("Error accessing webcam: " + err);
@@ -53,15 +43,25 @@
             stream1.getTracks().forEach(track => track.stop());
             document.getElementById('webcam1').srcObject = null;
             stream1 = null;
+            // Tampilkan teks saat kamera mati
+            document.getElementById('cameraText').style.display = 'flex'; // Tampilkan teks "Off Camera"
         }
     }
 
-    // Event listener untuk checkbox
-    document.getElementById('cameraToggle').addEventListener('change', function() {
-        if (this.checked) {
-            startWebcam();
+    // Fungsi untuk toggle on/off kamera
+    function toggleCamera() {
+        const cameraToggle = document.getElementById('cameraToggle');
+        if (cameraToggle.checked) {
+            startWebcam(); // Nyalakan kamera
         } else {
-            stopWebcam();
+            stopWebcam(); // Matikan kamera
         }
+    }
+
+    // Otomatis memulai kamera saat halaman dimuat dan tombol dalam keadaan "on"
+    document.addEventListener('DOMContentLoaded', function() {
+        const cameraToggle = document.getElementById('cameraToggle');
+        cameraToggle.checked = true;  // Menyetel checkbox ke posisi "checked"
+        toggleCamera();  // Memulai kamera karena checkbox dalam keadaan "checked"
     });
 </script>

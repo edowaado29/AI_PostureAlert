@@ -12,6 +12,11 @@ export default {
     ],
     theme: {
         extend: {
+            boxShadow: {
+                "shadow-light": "0 2px 8px rgba(0, 0, 0, 0.1)", // Shadow lembut
+                "shadow-dark": "0 4px 12px rgba(0, 0, 0, 0.3)", // Shadow gelap
+                "shadow-colored": "0 4px 12px rgba(128, 15, 47, 0.5)", // Shadow berwarna
+            },
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
             },
@@ -21,6 +26,9 @@ export default {
         require("flowbite/plugin")({
             charts: true,
         }),
+        {
+            datatables: true,
+        },
         // ... other plugins
     ],
 };

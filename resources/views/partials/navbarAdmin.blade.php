@@ -1,3 +1,4 @@
+<nav class="fixed top-0 z-50 w-full bg-gradient-to-r from-[#C9184A] to-[#FF4D6D]   dark:bg-gray-800 dark:border-gray-700">
 <div class="px-3 py-3 lg:px-5 lg:pl-3">
     <div class="flex items-center justify-between">
         <div class="flex items-center justify-start rtl:justify-end">
@@ -13,7 +14,7 @@
                 </svg>
             </button>
             <a href="#" class="flex ms-2 md:me-24">
-                <span class="self-center text-[#FF4D6D] text-xl font-bold sm:text-2xl whitespace-nowrap">AI
+                <span class="self-center text-[#FFF0F3] text-xl font-bold sm:text-2xl whitespace-nowrap">AI
                     POSTURE</span>
             </a>
         </div>
@@ -43,3 +44,4 @@
         </div>
     </div>
 </div>
+</nav>

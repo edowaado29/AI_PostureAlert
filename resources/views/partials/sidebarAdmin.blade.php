@@ -1,5 +1,5 @@
 <aside id="logo-sidebar"
-    class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r  sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+    class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r  lg:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
     aria-label="Sidebar">
     <div class="h-full px-3 pb-4 overflow-y-auto bg-whiite  ">
         <ul class="space-y-2 font-medium">
@@ -29,7 +29,7 @@
                         class="{{ request()->is('controller') ? 'ms-3 text-white' : 'ms-3 text-[#C9184A] group-hover:text-white' }}">Controller</span>
                 </a>
             </li>
-            <li>
+            {{-- <li>
                 <a href="{{ route('laporan.admin') }}"
                     class="{{ request()->is('laporan') ? 'flex items-center p-2 text-white rounded-lg bg-[#C9184A] group' : 'flex items-center p-2 text-[#C9184A] rounded-lg hover:bg-[#C9184A] group' }}">
                     <svg class="{{ request()->is('laporan') ? 'w-5 h-5 text-white' : 'w-5 h-5 text-[#C9184A] transition duration-75 group-hover:text-white' }}"
@@ -41,7 +41,7 @@
                     <span
                         class="{{ request()->is('laporan') ? 'ms-3 text-white' : 'ms-3 text-[#C9184A] group-hover:text-white' }}">Laporan</span>
                 </a>
-            </li>
+            </li> --}}
 
         </ul>
     </div>

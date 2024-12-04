@@ -1,19 +1,19 @@
 import ApexCharts from "apexcharts";
+import { color } from "chart.js/helpers";
 
-var options = {
-    series: [
-        {
-            name: "High - 2013",
-            data: [28, 29, 33, 36, 32, 32, 33],
-        },
-        {
-            name: "Low - 2013",
-            data: [12, 11, 14, 18, 17, 13, 13],
-        },
-    ],
+// Data PostureStatus
+var postureData = @json($perBulanPostureCount); // Data dari controller
+var postureLabels = Object.keys(postureData);  // Bulan
+var postureCounts = Object.values(postureData);  // Jumlah data per bulan
+
+var optionsPosture = {
+    series: [{
+        name: "BAD POSTURE",
+        data: postureCounts, // Data untuk 12 bulan
+    }],
     chart: {
         height: 350,
-        type: "line",
+        type: "area",
         dropShadow: {
             enabled: true,
             color: "#000",
@@ -29,7 +29,7 @@ var options = {
             show: false,
         },
     },
-    colors: ["#77B6EA", "#545454"],
+    colors: ["#FBB13C"],
     dataLabels: {
         enabled: true,
     },
@@ -37,13 +37,13 @@ var options = {
         curve: "smooth",
     },
     title: {
-        text: "Average High & Low Temperature",
-        align: "left",
+        text: "BAD POSTURE",
+        align: "right",
     },
     grid: {
         borderColor: "#e7e7e7",
         row: {
-            colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+            colors: ["#f3f3f3", "transparent"], // Row color alternates
             opacity: 0.5,
         },
     },
@@ -51,17 +51,7 @@ var options = {
         size: 1,
     },
     xaxis: {
-        categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-        title: {
-            text: "Month",
-        },
-    },
-    yaxis: {
-        title: {
-            text: "Temperature",
-        },
-        min: 5,
-        max: 40,
+        categories: postureLabels, // Bulan
     },
     legend: {
         position: "top",
@@ -72,141 +62,75 @@ var options = {
     },
 };
 
-var chart = new ApexCharts(document.querySelector("#chart"), options);
-chart.render();
+var chartPosture = new ApexCharts(
+    document.querySelector("#chartLinePosture"),
+    optionsPosture
+);
+chartPosture.render();
 
-var series = {
-    monthDataSeries1: {
-        prices: [
-            8107.85, 8128.0, 8122.9, 8165.5, 8340.7, 8423.7, 8423.5, 8514.3,
-            8481.85, 8487.7, 8506.9, 8626.2,
-        ],
-        dates: [
-            "2023-10-01",
-            "2023-10-02",
-            "2023-10-03",
-            "2023-10-04",
-            "2023-10-05",
-            "2023-10-06",
-            "2023-10-09",
-            "2023-10-10",
-            "2023-10-11",
-            "2023-10-12",
-            "2023-10-13",
-            "2023-10-14",
-        ],
-    },
-};
+// Data DistanceStatus
+var distanceData = @json($perBulanDistanceCount); // Data dari controller
+var distanceLabels = Object.keys(distanceData);  // Bulan
+var distanceCounts = Object.values(distanceData);  // Jumlah data per bulan
 
-var options = {
-    series: [
-        {
-            name: "STOCK ABC",
-            data: series.monthDataSeries1.prices,
-        },
-    ],
+var optionsDistance = {
+    series: [{
+        name: "BAD DISTANCE",
+        data: distanceCounts, // Data untuk 12 bulan
+    }],
     chart: {
-        type: "area",
         height: 350,
+        type: "area",
+        dropShadow: {
+            enabled: true,
+            color: "#000",
+            top: 18,
+            left: 7,
+            blur: 10,
+            opacity: 0.2,
+        },
         zoom: {
             enabled: false,
         },
+        toolbar: {
+            show: false,
+        },
     },
+    colors: ["#73D2DE"],
     dataLabels: {
-        enabled: false,
+        enabled: true,
     },
     stroke: {
-        curve: "straight",
+        curve: "smooth",
     },
-
     title: {
-        text: "Fundamental Analysis of Stocks",
-        align: "left",
+        text: "BAD DISTANCE",
+        align: "right",
     },
-    subtitle: {
-        text: "Price Movements",
-        align: "left",
+    grid: {
+        borderColor: "#e7e7e7",
+        row: {
+            colors: ["#f3f3f3", "transparent"], // Row color alternates
+            opacity: 0.5,
+        },
     },
-    labels: series.monthDataSeries1.dates,
+    markers: {
+        size: 1,
+    },
     xaxis: {
-        type: "datetime",
-    },
-    yaxis: {
-        opposite: true,
+        categories: distanceLabels, // Bulan
     },
     legend: {
-        horizontalAlign: "left",
+        position: "top",
+        horizontalAlign: "right",
+        floating: true,
+        offsetY: -25,
+        offsetX: -5,
     },
 };
 
-var chart = new ApexCharts(document.querySelector("#chartArea"), options);
-chart.render();
-
-// Konfigurasi Chart
-var options = {
-    series: [
-        {
-            name: "Net Profit",
-            data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
-        },
-        {
-            name: "Revenue",
-            data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
-        },
-        {
-            name: "Free Cash Flow",
-            data: [35, 41, 36, 26, 45, 48, 52, 53, 41],
-        },
-    ],
-    chart: {
-        type: "bar",
-        height: 350,
-    },
-    plotOptions: {
-        bar: {
-            horizontal: false,
-            columnWidth: "55%",
-            endingShape: "rounded",
-        },
-    },
-    dataLabels: {
-        enabled: false,
-    },
-    stroke: {
-        show: true,
-        width: 2,
-        colors: ["transparent"],
-    },
-    xaxis: {
-        categories: [
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-        ],
-    },
-    yaxis: {
-        title: {
-            text: "$ (thousands)",
-        },
-    },
-    fill: {
-        opacity: 1,
-    },
-    tooltip: {
-        y: {
-            formatter: function (val) {
-                return "$ " + val + " thousands";
-            },
-        },
-    },
-};
-
-// Render Chart
-var chart = new ApexCharts(document.querySelector("#chartColum"), options);
-chart.render();
+var chartDistance = new ApexCharts(
+    document.querySelector("#chartLineDistance"),
+    optionsDistance
+);
+chartDistance.render();

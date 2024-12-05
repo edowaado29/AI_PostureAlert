@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class loginController extends Controller
 {
-    public function showLoginForm()
+    public function FormLogin()
     {
         return view('auth.login');
     }
@@ -38,6 +38,6 @@ class loginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login')->with('success', 'You have been logged out successfully.');
+        return redirect('/')->with('success', 'You have been logged out successfully.');
     }
 }

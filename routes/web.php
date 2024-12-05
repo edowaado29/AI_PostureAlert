@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\loginController;
 
-Route::get('/   ', [loginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [loginController::class, 'login']);
+Route::get('/', [loginController::class, 'FormLogin'])->name('login.index');
+Route::post('/login', [loginController::class, 'login'])->name('login');
 Route::post('/logout', [loginController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {

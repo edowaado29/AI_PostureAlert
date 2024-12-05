@@ -14,7 +14,7 @@
 
         <!-- Camera Section -->
         <div class="mt-6 shadow-lg border rounded-lg p-6 bg-white grid grid-cols-10 gap-4">
-            <div class="shadow-lg border rounded-lg p-6 bg-white flex justify-center col-span-4">
+            <div class="border rounded-lg p-6 bg-white flex justify-center col-span-4">
                 <div class="">
                     <div class="p-6 bg-white">
                         <h2 class="text-lg font-bold text-gray-700 text-center mb-4">Mode Pengaturan</h2>
